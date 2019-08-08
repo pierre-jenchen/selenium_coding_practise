@@ -20,7 +20,7 @@ public class AmazonTest {
 
     @Before
     public void  setup() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/bit/bin/chromedriver"); // Linux: /usr/bin/chromedriver
         this.webDriver = new ChromeDriver();
         webDriver.get("https://www.amazon.de");
 
@@ -61,7 +61,7 @@ public class AmazonTest {
         Thread.sleep(4000);
         webDriver.findElement(By.id("add-to-cart-button")).click();
         Thread.sleep(4000);
-        Assert.assertTrue(webDriver.findElement(By.className("a-alert-success")).isDisplayed());
+        Assert.assertTrue(webDriver.findElement(By.className("a-alert-success")).isDisplayed() || webDriver.findElement(By.className("a-icon-success")).isDisplayed());
     }
 
 
