@@ -59,7 +59,6 @@ public class AmazonTest {
         int random = new Random().nextInt(results.size());
         WebElement selectedElement = results.get(random);
         WebElement description = selectedElement.findElement(By.tagName("h2")).findElement(By.tagName("a"));
-        System.out.println(description.getText());
         description.click();
         Thread.sleep(4000);
         webDriver.findElement(By.id("add-to-cart-button")).click();
