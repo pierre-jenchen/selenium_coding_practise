@@ -20,7 +20,7 @@ public class AmazonTest {
 
     @Before
     public void  setup() {
-        System.setProperty("webdriver.chrome.driver", "/Users/bit/bin/chromedriver"); // Linux: /usr/bin/chromedriver
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver"); // Linux: /usr/bin/chromedriver MacOS: /Users/bit/bin/chromedriver
         this.webDriver = new ChromeDriver();
         webDriver.get("https://www.amazon.de");
 
