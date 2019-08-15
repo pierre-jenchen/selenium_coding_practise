@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,12 @@ public class BasePage {
 
     public void waitVisibility(By elementBy) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
+    }
+
+    public void pageLoaded(){
+        wait.until(driver -> String
+                .valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState"))
+                .equals("complete"));
     }
 
     public void click(By elementBy) {

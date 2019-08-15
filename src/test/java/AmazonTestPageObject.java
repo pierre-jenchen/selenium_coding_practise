@@ -20,12 +20,11 @@ public class AmazonTestPageObject {
 
     @Test
     public void myFirstTest() {
-
         AmazonStartPage startPage = new AmazonStartPage(webDriver);
         startPage.fillSearch("Selenium");
         AmazonResultPage resultPage = startPage.clickOnSuggestions();
+        resultPage.pageLoaded();
         Assert.assertTrue(resultPage.countResults() > 14);
-
     }
 
     @After
