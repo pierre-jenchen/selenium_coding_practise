@@ -7,34 +7,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class AmazonStartPage extends BasePage{
 
-    @FindBy(id="twotabsearchtextbox")
-    WebElement searchbox;
+    By searchBox = By.id("twotabsearchtextbox");
+    By cart = By.id("nav-cart");
 
     public AmazonStartPage(WebDriver driver) {
         super(driver);
     }
 
     public void fillSearch(String searchElement) {
-        searchbox.sendKeys(searchElement);
+        this.writeText(searchBox, searchElement);
     }
 
     public AmazonResultPage search(String searchElement) {
-        searchbox.sendKeys(searchElement);
-        searchbox.sendKeys(Keys.RETURN);
+        this.writeText(searchBox, searchElement);
+        this.enter(searchBox);
         return new AmazonResultPage(driver);
     }
 
-    public AmazonResultPage clickOnSuggestions() {
+    public AmazonResultPage clickOnSuggestion() {
         waitVisibility(By.className("s-suggestion"));
         List<WebElement> suggestions = driver.findElement(By.id("suggestions")).findElements(By.className("s-suggestion"));
         int random = new Random().nextInt(suggestions.size());
         WebElement suggestion = suggestions.get(random);
         suggestion.click();
         return new AmazonResultPage(driver);
+    }
+
+    public void goToCart(){
+        this.click(cart);
     }
 }

@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.AmazonProductPage;
 import pages.AmazonResultPage;
 import pages.AmazonStartPage;
 
@@ -22,9 +23,18 @@ public class AmazonTestPageObject {
     public void myFirstTest() {
         AmazonStartPage startPage = new AmazonStartPage(webDriver);
         startPage.fillSearch("Selenium");
-        AmazonResultPage resultPage = startPage.clickOnSuggestions();
+        AmazonResultPage resultPage = startPage.clickOnSuggestion();
         resultPage.pageLoaded();
         Assert.assertTrue(resultPage.countResults() > 14);
+    }
+
+    @Test
+    public void mySecondTest() {
+        AmazonStartPage startPage = new AmazonStartPage(webDriver);
+        AmazonResultPage resultPage = startPage.search("Selenium");
+        resultPage.pageLoaded();
+        AmazonProductPage productPage = resultPage.clickOnResult();
+        productPage.addToCart();
     }
 
     @After

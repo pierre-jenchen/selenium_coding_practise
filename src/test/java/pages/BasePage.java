@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +13,6 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
-        PageFactory.initElements(driver, this);
     }
 
     public void waitVisibility(By elementBy) {
@@ -42,5 +38,10 @@ public class BasePage {
     public String readText(By elementBy) {
         waitVisibility(elementBy);
         return driver.findElement(elementBy).getText();
+    }
+
+    public void enter(By elementBy) {
+        waitVisibility(elementBy);
+        driver.findElement(elementBy).sendKeys(Keys.ENTER);
     }
 }
