@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class AmazonProductPage extends AmazonStartPage {
 
-    By addCart = By.id("add-to-cart-button");
+    private By addCart = By.id("add-to-cart-button");
 
-    public AmazonProductPage(WebDriver driver) {
+    AmazonProductPage(WebDriver driver) {
         super(driver);
     }
 
@@ -17,7 +17,7 @@ public class AmazonProductPage extends AmazonStartPage {
 
     public boolean isInCart() {
         this.pageLoaded();
-        return true;
+        return driver.findElement(By.className("a-alert-success")).isDisplayed() || driver.findElement(By.className("a-icon-success")).isDisplayed();
     }
 
 }

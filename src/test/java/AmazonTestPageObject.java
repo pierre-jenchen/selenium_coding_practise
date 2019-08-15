@@ -35,6 +35,7 @@ public class AmazonTestPageObject {
         resultPage.pageLoaded();
         AmazonProductPage productPage = resultPage.clickOnResult();
         productPage.addToCart();
+        Assert.assertTrue(productPage.isInCart());
     }
 
     @After

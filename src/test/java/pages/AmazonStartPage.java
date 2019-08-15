@@ -1,20 +1,16 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class AmazonStartPage extends BasePage{
 
-    By searchBox = By.id("twotabsearchtextbox");
-    By cart = By.id("nav-cart");
+    private By searchBox = By.id("twotabsearchtextbox");
+    private By cart = By.id("nav-cart");
 
     public AmazonStartPage(WebDriver driver) {
         super(driver);
