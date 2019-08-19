@@ -14,5 +14,5 @@ Feature: Amazon basic search
     Then Search results should be visible
     When A Random item is opened
     Then Item Details should be visible
-    When Click on button "Add to cart"
+    When Click on "Add to cart"-button
     Then Success Message should be visible

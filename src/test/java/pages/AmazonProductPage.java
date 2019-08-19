@@ -7,7 +7,7 @@ public class AmazonProductPage extends AmazonStartPage {
 
     private By addCart = By.id("add-to-cart-button");
 
-    AmazonProductPage(WebDriver driver) {
+    public AmazonProductPage(WebDriver driver) {
         super(driver);
     }
 
@@ -18,6 +18,10 @@ public class AmazonProductPage extends AmazonStartPage {
     public boolean isInCart() {
         this.pageLoaded();
         return driver.findElement(By.className("a-alert-success")).isDisplayed() || driver.findElement(By.className("a-icon-success")).isDisplayed();
+    }
+
+    public boolean detailsVisible() {
+        return driver.findElement(By.id("cmrsSummary_feature_div")).isDisplayed();
     }
 
 }

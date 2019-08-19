@@ -10,6 +10,7 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.AmazonProductPage;
 import pages.AmazonResultPage;
 import pages.AmazonStartPage;
 import pages.BasePage;
@@ -46,33 +47,43 @@ public class Stepdefs {
     }
 
     @Then("^There are more than (\\d+) search results$")
-    public void there_are_more_than_search_results(int count) throws Throwable {
+    public void there_are_more_than_search_results(int count) {
         resultPage.pageLoaded();
         Assert.assertTrue(resultPage.countResults() > count);
     }
 
     @When("^Click on \"([^\"]*)\"-button$")
-    public void click_on_button(String arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void click_on_button(String button) {
+        switch (button) {
+            case "search":
+                new AmazonStartPage(webDriver).click(By.className("nav-input"));
+                return;
+
+            case "Add to cart":
+                AmazonProductPage productPage = new AmazonProductPage(webDriver);
+                productPage.pageLoaded();
+                productPage.addToCart();
+        }
     }
 
     @When("^A Random item is opened$")
     public void a_Random_item_is_opened() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        resultPage = new AmazonResultPage(webDriver);
+        resultPage.pageLoaded();
+        resultPage.clickOnResult();
     }
 
     @Then("^Item Details should be visible$")
-    public void item_Details_should_be_visible() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void item_Details_should_be_visible() {
+        AmazonProductPage productPage = new AmazonProductPage(webDriver);
+        Assert.assertTrue(productPage.detailsVisible());
+
     }
 
     @Then("^Success Message should be visible$")
     public void success_Message_should_be_visible() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        AmazonProductPage productPage = new AmazonProductPage(webDriver);
+        Assert.assertTrue(productPage.isInCart());
     }
 
     @After
