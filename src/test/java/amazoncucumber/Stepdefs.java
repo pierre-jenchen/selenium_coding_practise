@@ -1,6 +1,5 @@
 package amazoncucumber;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -13,7 +12,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AmazonProductPage;
 import pages.AmazonResultPage;
 import pages.AmazonStartPage;
-import pages.BasePage;
 
 public class Stepdefs {
     public static WebDriver webDriver;
@@ -22,12 +20,11 @@ public class Stepdefs {
     @Before
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver"); // Linux: /usr/bin/chromedriver MacOS: /Users/bit/bin/chromedriver
-        this.webDriver = new ChromeDriver();
-        webDriver.get("https://www.amazon.de");
+        webDriver = new ChromeDriver();
     }
 
-    @Given("User is on Amazon starting page")
-    public void user_is_on_Amazon_starting_page() {
+    @Given("^User is on Amazon starting page$")
+    public void user_is_on_amazon_starting_page(){
         new AmazonStartPage(webDriver).isOnStartPage();
     }
 
@@ -38,7 +35,7 @@ public class Stepdefs {
 
     @When("^Press key \"([^\"]*)\"$")
     public void press_key(String key) {
-        new AmazonStartPage(webDriver).enter(By.id("twotabsearchtextbox"));
+        new AmazonStartPage(webDriver).pressEnterKey(By.id("twotabsearchtextbox"));
     }
 
     @Then("^Search results should be visible$")
@@ -70,7 +67,7 @@ public class Stepdefs {
     public void a_Random_item_is_opened() throws Throwable {
         resultPage = new AmazonResultPage(webDriver);
         resultPage.pageLoaded();
-        resultPage.clickOnResult();
+        resultPage.clickOnRandomItem();
     }
 
     @Then("^Item Details should be visible$")

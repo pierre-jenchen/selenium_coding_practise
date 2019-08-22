@@ -1,5 +1,6 @@
 Feature: Amazon basic search
-  Given User is on Amazon starting page
+  Background:
+    Given User is on Amazon starting page
 
 
   Scenario: User performs basic search

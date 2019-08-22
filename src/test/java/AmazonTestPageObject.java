@@ -33,7 +33,7 @@ public class AmazonTestPageObject {
         AmazonStartPage startPage = new AmazonStartPage(webDriver);
         AmazonResultPage resultPage = startPage.search("Selenium");
         resultPage.pageLoaded();
-        AmazonProductPage productPage = resultPage.clickOnResult();
+        AmazonProductPage productPage = resultPage.clickOnRandomItem();
         productPage.addToCart();
         Assert.assertTrue(productPage.isInCart());
     }

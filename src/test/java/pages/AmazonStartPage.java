@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.Random;
 
-public class AmazonStartPage extends BasePage{
+public class AmazonStartPage extends BasePage {
 
     private By searchBox = By.id("twotabsearchtextbox");
     private By cart = By.id("nav-cart");
@@ -26,7 +26,7 @@ public class AmazonStartPage extends BasePage{
 
     public AmazonResultPage search(String searchElement) {
         this.writeText(searchBox, searchElement);
-        this.enter(searchBox);
+        this.pressEnterKey(searchBox);
         return new AmazonResultPage(driver);
     }
 

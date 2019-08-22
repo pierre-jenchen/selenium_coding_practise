@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-    public WebDriver driver;
+    public static WebDriver driver;
     public WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
@@ -17,7 +17,7 @@ public class BasePage {
     }
 
     public void waitVisibility(By elementBy) {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
     }
 
     public void pageLoaded(){
@@ -41,7 +41,7 @@ public class BasePage {
         return driver.findElement(elementBy).getText();
     }
 
-    public void enter(By elementBy) {
+    public void pressEnterKey(By elementBy) {
         waitVisibility(elementBy);
         driver.findElement(elementBy).sendKeys(Keys.ENTER);
     }

@@ -19,7 +19,7 @@ public class AmazonResultPage extends AmazonStartPage {
         return results.size();
     }
 
-    public AmazonProductPage clickOnResult() {
+    public AmazonProductPage clickOnRandomItem() {
         List<WebElement> results = fillResults();
         int random = new Random().nextInt(results.size());
         WebElement selectedElement = results.get(random);
