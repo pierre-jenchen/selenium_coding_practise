@@ -20,7 +20,7 @@ public class AmazonTest {
 
     @Before
     public void  setup() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver"); // Linux: /usr/bin/chromedriver MacOS: /Users/bit/bin/chromedriver
         this.webDriver = new ChromeDriver();
         webDriver.get("https://www.amazon.de");
 
@@ -57,11 +57,13 @@ public class AmazonTest {
             }
         }
         int random = new Random().nextInt(results.size());
-        results.get(random).click();
+        WebElement selectedElement = results.get(random);
+        WebElement description = selectedElement.findElement(By.tagName("h2")).findElement(By.tagName("a"));
+        description.click();
         Thread.sleep(4000);
         webDriver.findElement(By.id("add-to-cart-button")).click();
         Thread.sleep(4000);
-        Assert.assertTrue(webDriver.findElement(By.className("a-alert-success")).isDisplayed());
+        Assert.assertTrue(webDriver.findElement(By.className("a-alert-success")).isDisplayed() || webDriver.findElement(By.className("a-icon-success")).isDisplayed());
     }
 
 
